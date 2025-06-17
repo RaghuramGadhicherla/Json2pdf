@@ -1,0 +1,19 @@
+{
+  "title": "Sample Document",
+  "author": "John Doe",
+  "subject": "JSON to PDF Conversion",
+  "sections": [
+    {
+      "heading": "Introduction",
+      "content": "This is a sample document that demonstrates the conversion from JSON to PDF using Spring Batch and Apache PDFBox.\n\nThe document structure is defined in JSON format and then processed to generate a PDF document with proper formatting."
+    },
+    {
+      "heading": "Features",
+      "content": "This converter supports the following features:\n- Document metadata (title, author, subject)\n- Multiple sections with headings\n- Text formatting\n- Automatic page breaks"
+    },
+    {
+      "heading": "Implementation",
+      "content": "The implementation uses Spring Batch for processing the JSON data and Apache PDFBox for generating the PDF documents.\n\nSpring Batch provides a robust framework for batch processing, while PDFBox offers comprehensive PDF manipulation capabilities."
+    }
+  ]
+}
