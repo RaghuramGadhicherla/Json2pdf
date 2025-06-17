@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSON to PDF Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #333;
+        }
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f5f5f5;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>JSON to PDF Converter</h1>
+        
+        <div class="card">
+            <h2>About</h2>
+            <p>This application converts JSON documents to PDF format using Spring Batch and Apache PDFBox.</p>
+        </div>
+        
+        <div class="card">
+            <h2>Start Conversion</h2>
+            <p>Click the button below to start the conversion process:</p>
+            <button id="convertBtn">Convert JSON to PDF</button>
+            <div id="result"></div>
+        </div>
+        
+        <div class="card">
+            <h2>Configuration</h2>
+            <p>Input JSON file: <code>src/main/resources/data/input.json</code></p>
+            <p>Output PDF directory: <code>./output</code></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('convertBtn').addEventListener('click', function() {
+            fetch('/api/convert', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.text())
+            .then(data => {
+                const resultDiv = document.getElementById('result');
+                resultDiv.textContent = data;
+                resultDiv.style.display = 'block';
+            })
+            .catch(error => {
+                const resultDiv = document.getElementById('result');
+                resultDiv.textContent = 'Error: ' + error;
+                resultDiv.style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>
