@@ -21,7 +21,8 @@ public class PdfItemWriter implements ItemWriter<Document> {
     @Override
     public void write(Chunk<? extends Document> chunk) throws Exception {
         for (Document document : chunk) {
-            String filename = document.getTitle().replaceAll("[^a-zA-Z0-9]", "_") + ".pdf";
+            String title = document.getTitle() != null ? document.getTitle() : "document_" + System.currentTimeMillis();
+            String filename = title.replaceAll("[^a-zA-Z0-9]", "_") + ".pdf";
             Path outputPath = Paths.get(outputDirectory, filename);
             pdfGenerationService.generatePdf(document, outputPath.toString());
         }
